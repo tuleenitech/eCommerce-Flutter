@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:shopping/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:shopping/common/widgets/layout/grid_layout.dart';
 import 'package:shopping/common/widgets/products/products_cards/product_card_vertical.dart';
+import 'package:shopping/common/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:shopping/common/widgets/texts/section_heading.dart';
+import 'package:shopping/features/shop/controllers/product/product_controller.dart';
+import 'package:shopping/features/shop/models/product_model.dart';
 import 'package:shopping/features/shop/screens/all_products/all_products.dart';
 import 'package:shopping/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:shopping/features/shop/screens/home/widgets/home_categories.dart';
@@ -17,6 +21,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProductController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -62,26 +67,40 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   //promo slider
-                  const TPromoSlider(
-                    banners: [
-                      TImages.banner4,
-                      TImages.banner2,
-                      TImages.banner3,
-                    ],
-                  ),
+                  const TPromoSlider(),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   //heading
                   TSectionHeading(
                       title: 'Popular Products',
-                      onPressed: () => Get.to(() => const AllProducts())),
+                      onPressed: () => Get.to(() => AllProducts(
+                            title: 'Popular Products',
+                            query: FirebaseFirestore.instance
+                                .collection('Products')
+                                .where('IsFeatured', isEqualTo: true)
+                                .limit(6),
+                            futureMethod: controller.fetchAllFeaturedProducts(),
+                          ))),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   //popular products
 
-                  TGridLayout(
-                      itemCount: 4,
-                      itemBuilder: (_, index) => const TProductCardVertical())
+                  Obx(() {
+                    if (controller.isLoading.value)
+                      return const TVerticalProductShimmer();
+
+                    if (controller.featuredProducts.isEmpty) {
+                      return Center(
+                          child: Text('No data Found',
+                              style: Theme.of(context).textTheme.bodyMedium));
+                    }
+
+                    return TGridLayout(
+                      itemCount: controller.featuredProducts.length,
+                      itemBuilder: (_, index) => TProductCardVertical(
+                          product: controller.featuredProducts[index]),
+                    );
+                  })
                 ],
               ),
             )

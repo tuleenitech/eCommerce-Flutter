@@ -1,0 +1,69 @@
+import 'package:flutter/material.dart';
+import 'package:shopping/common/widgets/brands/brand_show_case.dart';
+import 'package:shopping/common/widgets/shimmers/boxes_shimmer.dart';
+import 'package:shopping/common/widgets/shimmers/list_file_shimmer.dart';
+import 'package:shopping/features/shop/controllers/brand_controller.dart';
+import 'package:shopping/features/shop/models/category_model.dart';
+import 'package:shopping/utils/constants/image_strings.dart';
+import 'package:shopping/utils/constants/sizes.dart';
+import 'package:shopping/utils/helpers/cloud_helper_function.dart';
+
+class CategoryBrands extends StatelessWidget {
+  const CategoryBrands({super.key, required this.category});
+
+  final CategoryModel category;
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = BrandController.instance;
+
+    return FutureBuilder(
+        future: controller.getBrandCategory(category.id),
+        builder: (context, snapshot) {
+          const loader = Column(
+            children: [
+              TListTileShimmer(),
+              SizedBox(
+                height: TSizes.spaceBtwItems,
+              ),
+              TBoxesShimmer(),
+              SizedBox(
+                height: TSizes.spaceBtwItems,
+              ),
+            ],
+          );
+
+          final widget = TCloudHelperFunctions.checkMultiRecordState(
+              snapshot: snapshot, loader: loader);
+
+          if (widget != null) return widget;
+
+          final brands = snapshot.data!;
+
+          return ListView.builder(
+              itemBuilder: (_, index) {
+                final brand = brands[index];
+                return FutureBuilder(
+                    future: controller.getBrandProducts(
+                        brandId: brand.id, limit: 3),
+                    builder: (context, snapshot) {
+                      final widget =
+                          TCloudHelperFunctions.checkMultiRecordState(
+                              snapshot: snapshot, loader: loader);
+
+                      if (widget != null) return widget;
+
+                      final products = snapshot.data!;
+
+                      return TBrandShowCase(
+                        brand: brand,
+                        images: products.map((e) => e.thumbnail).toList(),
+                      );
+                    });
+              },
+              itemCount: brands.length,
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true);
+        });
+  }
+}

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shopping/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:shopping/common/widgets/loaders/animation_loader.dart';
+import 'package:shopping/features/shop/controllers/product/order_controller.dart';
+import 'package:shopping/navigation_menu.dart';
 import 'package:shopping/utils/constants/colors.dart';
+import 'package:shopping/utils/constants/image_strings.dart';
 import 'package:shopping/utils/constants/sizes.dart';
+import 'package:shopping/utils/helpers/cloud_helper_function.dart';
 import 'package:shopping/utils/helpers/helper_functions.dart';
 
 class TOrderListItems extends StatelessWidget {
@@ -11,118 +17,155 @@ class TOrderListItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
-    return ListView.separated(
-      shrinkWrap: true,
-      itemCount: 10,
-      separatorBuilder: (_, __) => const SizedBox(height: TSizes.spaceBtwItems),
-      itemBuilder: (_, index) => TRoundedContainer(
-        showBorder: true,
-        padding: const EdgeInsets.all(TSizes.md),
-        backgroundColor: dark ? TColors.dark : TColors.light,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              children: [
-                //icon
-                const Icon(Iconsax.ship),
-                const SizedBox(
-                  width: TSizes.spaceBtwItems / 2,
-                ),
+    final controller = Get.put(OrderController());
 
-                //status
-                Expanded(
+    return FutureBuilder(
+        future: controller.fetchUserOrders(),
+        builder: (_, snapshot) {
+          final emptyWidget = TAnimationLoaderWidget(
+            text: 'Whoops! No Orders Yet',
+            animation: TImages.orderCompletedAnimation,
+            showAction: true,
+            actionText: 'Let\'s fill it',
+            onActionPressed: () => Get.off(() => const NavigationMenu()),
+          );
+
+          final response = TCloudHelperFunctions.checkMultiRecordState(
+              snapshot: snapshot, nothingFound: emptyWidget);
+          if (response != null) return response;
+
+          final orders = snapshot.data!;
+
+          return ListView.separated(
+              shrinkWrap: true,
+              itemCount: orders.length,
+              separatorBuilder: (_, __) =>
+                  const SizedBox(height: TSizes.spaceBtwItems),
+              itemBuilder: (_, index) {
+                final order = orders[index];
+                return TRoundedContainer(
+                  showBorder: true,
+                  padding: const EdgeInsets.all(TSizes.md),
+                  backgroundColor: dark ? TColors.dark : TColors.light,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Processing',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .apply(color: TColors.primary, fontWeightDelta: 1),
-                      ),
-                      Text(
-                        '07 Nov 2024',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ],
-                  ),
-                ),
+                      Row(
+                        children: [
+                          //icon
+                          const Icon(Iconsax.ship),
+                          const SizedBox(
+                            width: TSizes.spaceBtwItems / 2,
+                          ),
 
-                //icon
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Iconsax.arrow_right_34, size: TSizes.iconSm),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: TSizes.spaceBtwItems),
-
-            //row 2
-            Row(
-              children: [
-                Expanded(
-                  child: Row(
-                    children: [
-                      //icon
-                      const Icon(Iconsax.tag),
-                      const SizedBox(
-                        width: TSizes.spaceBtwItems / 2,
-                      ),
-
-                      //status
-                      Expanded(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Order',
-                                style: Theme.of(context).textTheme.labelMedium),
-                            Text(
-                              '[#236f2]',
-                              style: Theme.of(context).textTheme.titleMedium,
+                          //status
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  order.orderStatusText,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .apply(
+                                          color: TColors.primary,
+                                          fontWeightDelta: 1),
+                                ),
+                                Text(
+                                  order.formattedOrderDate,
+                                  style:
+                                      Theme.of(context).textTheme.headlineSmall,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Row(
-                    children: [
-                      //icon
-                      const Icon(Iconsax.calendar),
-                      const SizedBox(
-                        width: TSizes.spaceBtwItems / 2,
+                          ),
+
+                          //icon
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Iconsax.arrow_right_34,
+                                size: TSizes.iconSm),
+                          ),
+                        ],
                       ),
 
-                      //status
-                      Expanded(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Shipping Date',
-                                style: Theme.of(context).textTheme.labelMedium),
-                            Text(
-                              '03 February 2024',
-                              style: Theme.of(context).textTheme.titleMedium,
+                      const SizedBox(height: TSizes.spaceBtwItems),
+
+                      //row 2
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Row(
+                              children: [
+                                //icon
+                                const Icon(Iconsax.tag),
+                                const SizedBox(
+                                  width: TSizes.spaceBtwItems / 2,
+                                ),
+
+                                //status
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Order',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium),
+                                      Text(
+                                        order.id,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                          Expanded(
+                            child: Row(
+                              children: [
+                                //icon
+                                const Icon(Iconsax.calendar),
+                                const SizedBox(
+                                  width: TSizes.spaceBtwItems / 2,
+                                ),
+
+                                //status
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Shipping Date',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium),
+                                      Text(
+                                        order.formattedDeliveryDate,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+                );
+              });
+        });
   }
 }

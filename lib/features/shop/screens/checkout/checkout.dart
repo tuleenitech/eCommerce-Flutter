@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping/common/widgets/appbar/appbar.dart';
 import 'package:shopping/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:shopping/common/widgets/loaders/loaders.dart';
 import 'package:shopping/common/widgets/products/cart/coupon_widget.dart';
+import 'package:shopping/common/widgets/products/pricing_calculator.dart';
 import 'package:shopping/common/widgets/success_screen/success_screen.dart';
+import 'package:shopping/features/shop/controllers/product/cart_controller.dart';
+import 'package:shopping/features/shop/controllers/product/order_controller.dart';
 import 'package:shopping/features/shop/screens/cart/widget/cart_items.dart';
 import 'package:shopping/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:shopping/features/shop/screens/checkout/widgets/billing_amount_section.dart';
@@ -19,6 +23,11 @@ class CheckOutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartController = CartController.instance;
+    final subTotal = cartController.totalCartPrice.value;
+    final orderController = Get.put(OrderController());
+    final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'US');
+
     final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       appBar: TAppBar(
@@ -80,13 +89,12 @@ class CheckOutScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(TSizes.defaultSpace),
         child: ElevatedButton(
-            onPressed: () => Get.to(() => SuccessScreen(
-                  image: TImages.successfulPaymentIcon,
-                  title: 'Payment Success!',
-                  subTitle: 'Your item will be shipped soon!',
-                  onPressed: () => Get.offAll(() => const NavigationMenu()),
-                )),
-            child: const Text('Checkout \$256.0')),
+            onPressed: subTotal > 0
+                ? () => orderController.processOrder(totalAmount)
+                : () => TLoaders.warningSnackBar(
+                    title: 'Empty Cart',
+                    message: ' To proceed Add Items in the cart.'),
+            child: Text('Checkout \$$totalAmount')),
       ),
     );
   }

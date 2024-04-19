@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:shopping/features/shop/controllers/product/cart_controller.dart';
 import 'package:shopping/features/shop/screens/cart/cart.dart';
 import 'package:shopping/utils/constants/colors.dart';
 
 class TCartCounterIcon extends StatelessWidget {
   const TCartCounterIcon({
     super.key,
-    required this.onPressed,
-    this.iconColor = TColors.white,
+    this.iconColor,
+    this.counterBgColor,
+    this.counterTextColor,
   });
 
-  final VoidCallback onPressed;
-  final Color iconColor;
+  final Color? iconColor, counterBgColor, counterTextColor;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(CartController());
+
     return Stack(
       children: [
         IconButton(
@@ -31,11 +34,13 @@ class TCartCounterIcon extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
             child: Center(
-              child: Text('2',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge!
-                      .apply(color: TColors.white, fontSizeFactor: 0.8)),
+              child: Obx(
+                () => Text(controller.noOfCartItems.value.toString(),
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .apply(color: TColors.white, fontSizeFactor: 0.8)),
+              ),
             ),
           ),
         )

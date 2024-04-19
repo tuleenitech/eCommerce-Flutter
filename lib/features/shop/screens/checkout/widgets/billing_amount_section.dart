@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shopping/common/widgets/products/pricing_calculator.dart';
+import 'package:shopping/features/shop/controllers/product/cart_controller.dart';
 
 import 'package:shopping/utils/constants/sizes.dart';
 
@@ -7,6 +9,10 @@ class TBillingAmountSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartController = CartController.instance;
+
+    final subTotal = cartController.totalCartPrice.value;
+
     return Column(
       children: [
         //subTotal
@@ -18,7 +24,7 @@ class TBillingAmountSection extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-              '\$256.0',
+              '\$$subTotal',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
@@ -34,7 +40,7 @@ class TBillingAmountSection extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-              '\$6.0',
+              '\$${TPricingCalculator.calculateShippingCost(subTotal, 'US')}',
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ],
@@ -50,7 +56,7 @@ class TBillingAmountSection extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-              '\$6.0',
+              '\$${TPricingCalculator.calculateTax(subTotal, 'US')}',
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ],
@@ -66,7 +72,7 @@ class TBillingAmountSection extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-              '\$356.0',
+              '\$${TPricingCalculator.calculateTotalPrice(subTotal, 'US')}',
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ],
