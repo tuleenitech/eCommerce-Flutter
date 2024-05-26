@@ -3,8 +3,7 @@ import 'package:get/get.dart';
 import 'package:shopping/common/widgets/image_text_widgets/vertical_image_text.dart';
 import 'package:shopping/common/widgets/shimmers/category_shimmer.dart';
 import 'package:shopping/features/shop/controllers/category_controller.dart';
-import 'package:shopping/features/shop/screens/sub_category/sub_caregories.dart';
-import 'package:shopping/utils/constants/image_strings.dart';
+import 'package:shopping/features/shop/screens/sub_category/sub_categories.dart';
 
 class THomeCategories extends StatelessWidget {
   const THomeCategories({
@@ -32,7 +31,7 @@ class THomeCategories extends StatelessWidget {
         height: 80,
         child: ListView.builder(
             shrinkWrap: true,
-            itemCount: 6,
+            itemCount: categoryController.featuredCategories.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (_, index) {
               final category = categoryController.featuredCategories[index];

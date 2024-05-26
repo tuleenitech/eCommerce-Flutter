@@ -1,17 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:shopping/common/widgets/appbar/appbar.dart';
 import 'package:shopping/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
-import 'package:shopping/common/widgets/icons/t_circular_icon.dart';
 import 'package:shopping/common/widgets/images/t_rounded_image.dart';
 import 'package:shopping/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:shopping/features/shop/controllers/product/images_controller.dart';
 import 'package:shopping/features/shop/models/product_model.dart';
 import 'package:shopping/utils/constants/colors.dart';
-import 'package:shopping/utils/constants/image_strings.dart';
 import 'package:shopping/utils/constants/sizes.dart';
 import 'package:shopping/utils/helpers/helper_functions.dart';
 
@@ -39,7 +35,7 @@ class TProductImageSlider extends StatelessWidget {
             SizedBox(
               height: 400,
               child: Padding(
-                padding: EdgeInsets.all(TSizes.productImageRadius * 2),
+                padding: const EdgeInsets.all(TSizes.productImageRadius * 2),
                 child: Center(child: Obx(() {
                   final image = controller.selectedProductImages.value;
                   return GestureDetector(

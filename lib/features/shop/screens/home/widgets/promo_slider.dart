@@ -5,7 +5,6 @@ import 'package:shopping/common/widgets/custom_shapes/containers/circular_contai
 import 'package:shopping/common/widgets/images/t_rounded_image.dart';
 import 'package:shopping/common/widgets/shimmers/shimmer.dart';
 import 'package:shopping/features/shop/controllers/banner_controller.dart';
-import 'package:shopping/features/shop/controllers/home_controller.dart';
 import 'package:shopping/utils/constants/colors.dart';
 import 'package:shopping/utils/constants/sizes.dart';
 
@@ -19,8 +18,9 @@ class TPromoSlider extends StatelessWidget {
     final controller = Get.put(BannerController());
     return Obx(() {
       //loader
-      if (controller.isLoading.value)
+      if (controller.isLoading.value) {
         return const TShimmerEffect(width: double.infinity, height: 190);
+      }
 
 //no data found
       if (controller.banners.isEmpty) {

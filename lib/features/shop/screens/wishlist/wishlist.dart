@@ -8,8 +8,6 @@ import 'package:shopping/common/widgets/loaders/animation_loader.dart';
 import 'package:shopping/common/widgets/products/products_cards/product_card_vertical.dart';
 import 'package:shopping/common/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:shopping/features/shop/controllers/product/favourites_controller.dart';
-import 'package:shopping/features/shop/models/product_model.dart';
-import 'package:shopping/features/shop/screens/home/home.dart';
 import 'package:shopping/navigation_menu.dart';
 import 'package:shopping/utils/constants/image_strings.dart';
 import 'package:shopping/utils/constants/sizes.dart';
@@ -20,7 +18,7 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = FavouritesController.instance;
+    final controller = Get.put(FavouritesController());
     return Scaffold(
       appBar: TAppBar(
         title: Text(
@@ -29,7 +27,7 @@ class FavoriteScreen extends StatelessWidget {
         ),
         actions: [
           TCircularIcon(
-              icon: Iconsax.add, onPressed: () => Get.to(HomeScreen())),
+              icon: Iconsax.add, onPressed: () => Get.to(() => const NavigationMenu()),),
         ],
       ),
       body: SingleChildScrollView(
@@ -41,13 +39,13 @@ class FavoriteScreen extends StatelessWidget {
               () => FutureBuilder(
                   future: controller.favoriteProducts(),
                   builder: (context, snapshot) {
+                    // Nothing found widget
                     final emptyWidget = TAnimationLoaderWidget(
                       text: 'Whoops! Wishlist is Empty...',
-                      animation: TImages.pencilAnimation,
+                      animation: TImages.loaderAnimation,
                       showAction: true,
                       actionText: 'Let\'s add some',
-                      onActionPressed: () =>
-                          Get.off(() => const NavigationMenu()),
+                      onActionPressed: () => Get.off(() => const NavigationMenu()),
                     );
 
                     const loader = TVerticalProductShimmer(itemCount: 6);

@@ -33,7 +33,7 @@ dependencies:
 
   # Utility Packages
   http: ^1.1.0
-  intl: ^0.18.1
+  intl: ^0.19.0
   logger: ^2.0.1
   lottie: ^3.1.0
   shimmer: ^3.0.0
@@ -70,6 +70,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logos/t-store-splash-logo-black.png"
+  adaptive_icon_foreground: "assets/logos/logo.png"
+  adaptive_icon_background: "#ffffff"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

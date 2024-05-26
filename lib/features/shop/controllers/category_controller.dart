@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:shopping/common/widgets/loaders/loaders.dart';
 import 'package:shopping/data/repositories/categories/category_repository.dart';
@@ -64,7 +63,7 @@ class CategoryController extends GetxController {
           .getProductsForCategory(categoryId: categoryId, limit: limit);
       return products;
     } catch (e) {
-      TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+      TLoaders.errorSnackBar(title: 'Oh Snap! $e', message: e.toString());
       return [];
     }
   }

@@ -11,7 +11,7 @@ class BannerController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
-    fetchBanner();
+    fetchBanners();
     super.onInit();
   }
 
@@ -20,7 +20,7 @@ class BannerController extends GetxController {
   }
 
   //fetch banner
-  Future<void> fetchBanner() async {
+  Future<void> fetchBanners() async {
     try {
       // show loader
       isLoading.value = true;
@@ -29,8 +29,8 @@ class BannerController extends GetxController {
       final bannerRepo = Get.put(BannerRepository());
       final banners = await bannerRepo.fetchBanners();
 
-      //asign banners
-      banners.assignAll(banners);
+      //assign banners
+      this.banners.assignAll(banners);
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     } finally {

@@ -1,8 +1,5 @@
-import "package:cloud_firestore/cloud_firestore.dart";
 import "package:flutter/material.dart";
 import "package:get/get.dart";
-import "package:http/http.dart";
-import "package:shopping/common/widgets/icons/t_circular_icon.dart";
 import "package:shopping/common/widgets/loaders/loaders.dart";
 import "package:shopping/common/widgets/texts/section_heading.dart";
 import "package:shopping/data/repositories/address/address_repository.dart";
@@ -94,15 +91,16 @@ class AddressController extends GetxController {
 
       //save Address Data
       final address = AddressModel(
-          id: '',
-          name: name.text.trim(),
-          phoneNumber: phoneNumber.text.trim(),
-          street: street.text.trim(),
-          city: city.text.trim(),
-          state: name.text.trim(),
-          postalCode: postalCode.text.trim(),
-          country: country.text.trim(),
-          selectedAddress: true);
+        id: '',
+        name: name.text.trim(),
+        phoneNumber: phoneNumber.text.trim(),
+        street: street.text.trim(),
+        city: city.text.trim(),
+        state: name.text.trim(),
+        postalCode: postalCode.text.trim(),
+        country: country.text.trim(),
+        selectedAddress: true,
+      );
 
       final id = await addressRepository.addAddress(address);
 
@@ -131,7 +129,7 @@ class AddressController extends GetxController {
     }
   }
 
-  /// Show Addresses ModalBottomSheet ot Checkout
+  /// Show Addresses ModalBottomSheet at Checkout
   Future<dynamic> selectNewAddressPopup(BuildContext context) {
     return showModalBottomSheet(
         context: context,

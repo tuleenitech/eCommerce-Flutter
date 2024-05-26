@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shopping/common/widgets/appbar/appbar.dart';
 import 'package:shopping/features/authentication/controllers/update_name_controller.dart';
-import 'package:shopping/features/personalization/controllers/user_controller.dart';
 import 'package:shopping/utils/constants/sizes.dart';
 import 'package:shopping/utils/constants/text_strings.dart';
 import 'package:shopping/utils/validators/validation.dart';
@@ -28,7 +27,7 @@ class ChangeName extends StatelessWidget {
           children: [
             //heading
             Text(
-              'User real Name for Easy verification. This name will appear on several Pages.',
+              'Use real Name for Easy verification. This name will appear on several Pages.',
               style: Theme.of(context).textTheme.labelMedium,
             ),
             const SizedBox(height: TSizes.spaceBtwSections),

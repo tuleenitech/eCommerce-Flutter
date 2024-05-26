@@ -1,9 +1,8 @@
 import 'package:shopping/features/shop/models/banner_model.dart';
 import 'package:shopping/features/shop/models/brand_model.dart';
 import 'package:shopping/features/shop/models/category_model.dart';
-import 'package:shopping/features/shop/models/product%20attribute_model.dart';
+import 'package:shopping/features/shop/models/product_attribute_model.dart';
 import 'package:shopping/features/shop/models/product_model.dart';
-import 'package:shopping/features/shop/models/product_variation_model.dart';
 import 'package:shopping/features/shop/models/product_variation_model.dart';
 import 'package:shopping/routes/routes.dart';
 import 'package:shopping/utils/constants/image_strings.dart';
@@ -64,6 +63,8 @@ class TDummyData {
         image: TImages.jeweleryIcon,
         name: 'Jewelery',
         isFeatured: true),
+
+    //sub categories
     CategoryModel(
         id: '8',
         image: TImages.sportIcon,
@@ -71,7 +72,6 @@ class TDummyData {
         parentId: '1',
         isFeatured: false),
 
-//sub categories
     CategoryModel(
         id: '9',
         image: TImages.sportIcon,
@@ -124,69 +124,69 @@ class TDummyData {
         isFeatured: false),
   ];
 
-  // /// List of all Brands
-  // static final List<BrandModel> brands = [
-  //   BrandModel(
-  //       id: '1',
-  //       image: TImages.nikeLogo,
-  //       name: 'Nike',
-  //       productsCount: 265,
-  //       isFeatured: true),
-  //   BrandModel(
-  //       id: '2',
-  //       image: TImages.adidasLogo,
-  //       name: 'Adidas',
-  //       productsCount: 95,
-  //       isFeatured: true),
-  //   BrandModel(
-  //       id: '8',
-  //       image: TImages.kenwoodLogo,
-  //       name: 'Kenwood',
-  //       productsCount: 36,
-  //       isFeatured: false),
-  //   BrandModel(
-  //       id: '9',
-  //       image: TImages.ikeaLogo,
-  //       name: 'IKEA',
-  //       productsCount: 36,
-  //       isFeatured: false),
-  //   BrandModel(
-  //       id: '5',
-  //       image: TImages.appleLogo,
-  //       name: 'Apple',
-  //       productsCount: 16,
-  //       isFeatured: true),
-  //   BrandModel(
-  //       id: '10',
-  //       image: TImages.acerlogo,
-  //       name: 'Acer',
-  //       productsCount: 36,
-  //       isFeatured: false),
-  //   BrandModel(
-  //       id: '3',
-  //       image: TImages.jordanLogo,
-  //       name: 'Jordan',
-  //       productsCount: 36,
-  //       isFeatured: true),
-  //   BrandModel(
-  //       id: '4',
-  //       image: TImages.pumaLogo,
-  //       name: 'Puma',
-  //       productsCount: 65,
-  //       isFeatured: true),
-  //   BrandModel(
-  //       id: '6',
-  //       image: TImages.zaraLogo,
-  //       name: 'ZARA',
-  //       productsCount: 36,
-  //       isFeatured: true),
-  //   BrandModel(
-  //       id: '7',
-  //       image: TImages.electronicsIcon,
-  //       name: 'Samsung',
-  //       productsCount: 36,
-  //       isFeatured: false),
-  // ];
+  /// List of all Brands
+  static final List<BrandModel> brands = [
+    BrandModel(
+        id: '1',
+        image: TImages.nikeLogo,
+        name: 'Nike',
+        productsCount: 265,
+        isFeatured: true),
+    BrandModel(
+        id: '2',
+        image: TImages.adidasLogo,
+        name: 'Adidas',
+        productsCount: 95,
+        isFeatured: true),
+    BrandModel(
+        id: '8',
+        image: TImages.kenwoodLogo,
+        name: 'Kenwood',
+        productsCount: 36,
+        isFeatured: false),
+    BrandModel(
+        id: '9',
+        image: TImages.ikeaLogo,
+        name: 'IKEA',
+        productsCount: 36,
+        isFeatured: false),
+    BrandModel(
+        id: '5',
+        image: TImages.appleLogo,
+        name: 'Apple',
+        productsCount: 16,
+        isFeatured: true),
+    BrandModel(
+        id: '10',
+        image: TImages.acerlogo,
+        name: 'Acer',
+        productsCount: 36,
+        isFeatured: false),
+    BrandModel(
+        id: '3',
+        image: TImages.jordanLogo,
+        name: 'Jordan',
+        productsCount: 36,
+        isFeatured: true),
+    BrandModel(
+        id: '4',
+        image: TImages.pumaLogo,
+        name: 'Puma',
+        productsCount: 65,
+        isFeatured: true),
+    BrandModel(
+        id: '6',
+        image: TImages.zaraLogo,
+        name: 'ZARA',
+        productsCount: 36,
+        isFeatured: true),
+    BrandModel(
+        id: '7',
+        image: TImages.electronicsIcon,
+        name: 'Samsung',
+        productsCount: 36,
+        isFeatured: false),
+  ];
 
 // List of all Products
   static final List<ProductModel> products = [

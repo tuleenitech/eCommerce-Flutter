@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shopping/features/authentication/controllers/forget_password/forget_password_controller.dart';
-import 'package:shopping/features/authentication/screens/password_configuration/reset_password.dart';
 import 'package:shopping/utils/constants/sizes.dart';
 import 'package:shopping/utils/constants/text_strings.dart';
 import 'package:shopping/utils/validators/validation.dart';

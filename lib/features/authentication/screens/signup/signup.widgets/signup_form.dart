@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shopping/features/authentication/controllers/signup/signup_controller.dart';
 import 'package:shopping/features/authentication/screens/signup/signup.widgets/terms_conditions_checkbox.dart';
-import 'package:shopping/features/authentication/screens/signup/verify_email.dart';
 import 'package:shopping/utils/constants/sizes.dart';
 import 'package:shopping/utils/constants/text_strings.dart';
 import 'package:shopping/utils/validators/validation.dart';
@@ -88,7 +87,7 @@ class TSignupForm extends StatelessWidget {
               obscureText: controller.hidePassword.value,
               decoration: InputDecoration(
                 labelText: TTexts.password,
-                prefixIcon: Icon(Iconsax.password_check),
+                prefixIcon: const Icon(Iconsax.password_check),
                 suffixIcon: IconButton(
                   onPressed: () => controller.hidePassword.value =
                       !controller.hidePassword.value,

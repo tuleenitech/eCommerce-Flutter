@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shopping/common/widgets/loaders/loaders.dart';
 import 'package:shopping/data/repositories/authentication/authentication_repository.dart';
 import 'package:shopping/features/personalization/controllers/user_controller.dart';

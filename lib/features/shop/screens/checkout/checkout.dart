@@ -5,16 +5,13 @@ import 'package:shopping/common/widgets/custom_shapes/containers/rounded_contain
 import 'package:shopping/common/widgets/loaders/loaders.dart';
 import 'package:shopping/common/widgets/products/cart/coupon_widget.dart';
 import 'package:shopping/common/widgets/products/pricing_calculator.dart';
-import 'package:shopping/common/widgets/success_screen/success_screen.dart';
 import 'package:shopping/features/shop/controllers/product/cart_controller.dart';
 import 'package:shopping/features/shop/controllers/product/order_controller.dart';
 import 'package:shopping/features/shop/screens/cart/widget/cart_items.dart';
 import 'package:shopping/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:shopping/features/shop/screens/checkout/widgets/billing_amount_section.dart';
 import 'package:shopping/features/shop/screens/checkout/widgets/billing_payment_section.dart';
-import 'package:shopping/navigation_menu.dart';
 import 'package:shopping/utils/constants/colors.dart';
-import 'package:shopping/utils/constants/image_strings.dart';
 import 'package:shopping/utils/constants/sizes.dart';
 import 'package:shopping/utils/helpers/helper_functions.dart';
 

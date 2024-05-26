@@ -5,6 +5,7 @@ import 'package:shopping/common/widgets/loaders/animation_loader.dart';
 import 'package:shopping/features/shop/controllers/product/cart_controller.dart';
 import 'package:shopping/features/shop/screens/cart/widget/cart_items.dart';
 import 'package:shopping/features/shop/screens/checkout/checkout.dart';
+import 'package:shopping/features/shop/screens/store/store.dart';
 import 'package:shopping/navigation_menu.dart';
 import 'package:shopping/utils/constants/image_strings.dart';
 import 'package:shopping/utils/constants/sizes.dart';
@@ -27,7 +28,7 @@ class CartScreen extends StatelessWidget {
           animation: TImages.cartAnimation,
           showAction: true,
           actionText: 'Let\'s fill it',
-          onActionPressed: () => Get.off(() => const NavigationMenu()),
+          onActionPressed: () => Get.off(() => const StoreScreen()),
         );
 
         if (controller.cartItems.isEmpty) {
@@ -46,7 +47,7 @@ class CartScreen extends StatelessWidget {
 
       //checkout button
       bottomNavigationBar: controller.cartItems.isEmpty
-          ? SizedBox()
+          ? const SizedBox()
           : Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: ElevatedButton(

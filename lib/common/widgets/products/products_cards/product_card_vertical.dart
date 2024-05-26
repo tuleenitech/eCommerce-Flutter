@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:shopping/common/styles/shadows.dart';
 import 'package:shopping/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:shopping/common/widgets/icons/t_circular_icon.dart';
 import 'package:shopping/common/widgets/images/t_rounded_image.dart';
 import 'package:shopping/common/widgets/products/cart/add_to_cart_button.dart';
 import 'package:shopping/common/widgets/products/favourite_icon/favourite_icon.dart';
@@ -15,7 +13,6 @@ import 'package:shopping/features/shop/models/product_model.dart';
 import 'package:shopping/features/shop/screens/product_details/product_detail.dart';
 import 'package:shopping/utils/constants/colors.dart';
 import 'package:shopping/utils/constants/enums.dart';
-import 'package:shopping/utils/constants/image_strings.dart';
 import 'package:shopping/utils/constants/sizes.dart';
 import 'package:shopping/utils/helpers/helper_functions.dart';
 
@@ -93,12 +90,12 @@ class TProductCardVertical extends StatelessWidget {
 
           //details
           Padding(
-            padding: EdgeInsets.only(left: TSizes.sm),
+            padding: const EdgeInsets.only(left: TSizes.sm),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TProductTitleText(title: product.title, smallSize: true),
-                SizedBox(height: TSizes.spaceBtwItems / 2),
+                const SizedBox(height: TSizes.spaceBtwItems / 2),
                 TBrandTitleWithVerifiedIcon(
                   title: product.brand!.name,
                 ),
@@ -117,7 +114,7 @@ class TProductCardVertical extends StatelessWidget {
                     if (product.productType == ProductType.single.toString() &&
                         product.salePrice > 0)
                       Padding(
-                        padding: EdgeInsets.only(left: TSizes.sm),
+                        padding: const EdgeInsets.only(left: TSizes.sm),
                         child: Text(
                           product.price.toString(),
                           style: Theme.of(context)
@@ -128,7 +125,7 @@ class TProductCardVertical extends StatelessWidget {
                       ),
                     //price
                     Padding(
-                      padding: EdgeInsets.only(left: TSizes.sm),
+                      padding: const EdgeInsets.only(left: TSizes.sm),
                       child: TProductPriceText(
                           price: controller.getProductPrice(product)),
                     ),

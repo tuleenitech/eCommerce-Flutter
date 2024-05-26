@@ -23,7 +23,7 @@ class UserRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FormatException catch (_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
@@ -36,7 +36,7 @@ class UserRepository extends GetxController {
     try {
       final documentSnapshot = await _db
           .collection("Users")
-          .doc(AuthenticationRepository.instance.authUser?.uid)
+          .doc(AuthenticationRepository.instance.authUser.uid)
           .get();
       if (documentSnapshot.exists) {
         return UserModel.fromSnapshot(documentSnapshot);
@@ -46,7 +46,7 @@ class UserRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FormatException catch (_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
@@ -64,7 +64,7 @@ class UserRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FormatException catch (_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
@@ -77,12 +77,12 @@ class UserRepository extends GetxController {
     try {
       await _db
           .collection("Users")
-          .doc(AuthenticationRepository.instance.authUser?.uid)
+          .doc(AuthenticationRepository.instance.authUser.uid)
           .update(json);
     } on FirebaseException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FormatException catch (_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
@@ -97,7 +97,7 @@ class UserRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FormatException catch (_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
@@ -115,7 +115,7 @@ class UserRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw TFirebaseAuthException(e.code).message;
     } on FormatException catch (_) {
-      throw TFormatException();
+      throw const TFormatException();
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {

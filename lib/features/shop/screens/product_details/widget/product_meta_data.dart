@@ -8,7 +8,6 @@ import 'package:shopping/features/shop/controllers/product/product_controller.da
 import 'package:shopping/features/shop/models/product_model.dart';
 import 'package:shopping/utils/constants/colors.dart';
 import 'package:shopping/utils/constants/enums.dart';
-import 'package:shopping/utils/constants/image_strings.dart';
 import 'package:shopping/utils/constants/sizes.dart';
 import 'package:shopping/utils/helpers/helper_functions.dart';
 
@@ -46,7 +45,7 @@ class TProductMetaData extends StatelessWidget {
             if (product.productType == ProductType.single.toString() &&
                 product.salePrice > 0)
               Text(
-                '\${product.price}/=',
+                '{product.price}',
                 style: Theme.of(context)
                     .textTheme
                     .titleSmall!

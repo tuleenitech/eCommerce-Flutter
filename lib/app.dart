@@ -12,14 +12,18 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       initialBinding: GeneralBindings(),
       getPages: AppRoutes.pages,
       home: const Scaffold(
-          backgroundColor: TColors.primary,
-          body: Center(child: CircularProgressIndicator(color: Colors.white))),
+        backgroundColor: TColors.primary,
+        body: Center(
+          child: CircularProgressIndicator(color: Colors.white),
+        ),
+      ),
     );
   }
 }

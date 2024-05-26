@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shopping/common/widgets/loaders/loaders.dart';
@@ -91,12 +90,12 @@ class UserController extends GetxController {
         middleText: 'Are you sure?  This action cannot be undone.',
         confirm: ElevatedButton(
           onPressed: () async => deleteUserAccount(),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red, side: const BorderSide(color: Colors.red)),
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
             child: Text('delete'),
           ),
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red, side: BorderSide(color: Colors.red)),
         ),
         cancel: OutlinedButton(
             onPressed: () => Navigator.of(Get.overlayContext!).pop(),
@@ -110,7 +109,7 @@ class UserController extends GetxController {
       /// First re-authenticate user
       final auth = AuthenticationRepository.instance;
       final provider =
-          auth.authUser!.providerData.map((e) => e.providerId).first;
+          auth.authUser.providerData.map((e) => e.providerId).first;
       if (provider.isNotEmpty) {
         // Re Verify Auth Email
         if (provider == 'google.com') {

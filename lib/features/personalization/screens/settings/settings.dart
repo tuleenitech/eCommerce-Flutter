@@ -6,8 +6,10 @@ import 'package:shopping/common/widgets/custom_shapes/containers/primary_header_
 import 'package:shopping/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:shopping/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:shopping/common/widgets/texts/section_heading.dart';
+import 'package:shopping/data/repositories/authentication/authentication_repository.dart';
 import 'package:shopping/features/personalization/screens/address/address.dart';
 import 'package:shopping/features/personalization/screens/profile/profile.dart';
+import 'package:shopping/features/shop/screens/cart/cart.dart';
 import 'package:shopping/features/shop/screens/order/order.dart';
 import 'package:shopping/utils/constants/colors.dart';
 import 'package:shopping/utils/constants/sizes.dart';
@@ -67,10 +69,11 @@ class SettingsScreen extends StatelessWidget {
                     onTap: () => Get.to(() => const UserAddressScreen()),
                   ),
 
-                  const TSettingsMenuTile(
+                  TSettingsMenuTile(
                     icon: Iconsax.shopping_cart,
                     title: 'My Cart',
-                    subTitle: 'Add, remove proucts and move to checkout',
+                    subTitle: 'Add, remove products and move to checkout',
+                    onTap: () => Get.to(() => const CartScreen()),
                   ),
                   TSettingsMenuTile(
                     icon: Iconsax.bag_tick,
@@ -136,7 +139,8 @@ class SettingsScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          AuthenticationRepository.instance.logout(),
                       child: const Text('Logout'),
                     ),
                   ),

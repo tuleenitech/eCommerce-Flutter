@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:shopping/common/widgets/list_tiles/payment_tile.dart';
 import 'package:shopping/common/widgets/texts/section_heading.dart';
@@ -30,7 +29,7 @@ class CheckoutController extends GetxController {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TSectionHeading(
+                    const TSectionHeading(
                         title: 'Select Payment Method',
                         showActionButton: false),
                     const SizedBox(height: TSizes.spaceBtwSections),

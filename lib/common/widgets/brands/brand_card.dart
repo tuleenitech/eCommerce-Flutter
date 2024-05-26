@@ -5,7 +5,6 @@ import 'package:shopping/common/widgets/texts/t_brand_title_text_with_verified_i
 import 'package:shopping/features/shop/models/brand_model.dart';
 import 'package:shopping/utils/constants/colors.dart';
 import 'package:shopping/utils/constants/enums.dart';
-import 'package:shopping/utils/constants/image_strings.dart';
 import 'package:shopping/utils/constants/sizes.dart';
 import 'package:shopping/utils/helpers/helper_functions.dart';
 

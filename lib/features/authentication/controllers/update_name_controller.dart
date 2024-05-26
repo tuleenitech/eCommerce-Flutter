@@ -4,6 +4,7 @@ import 'package:shopping/common/widgets/loaders/loaders.dart';
 import 'package:shopping/data/repositories/user/user_repository.dart';
 import 'package:shopping/features/personalization/controllers/user_controller.dart';
 import 'package:shopping/features/personalization/screens/profile/profile.dart';
+import 'package:shopping/utils/constants/image_strings.dart';
 import 'package:shopping/utils/helpers/network_manager.dart';
 import 'package:shopping/utils/popups/full_screen_loader.dart';
 
@@ -31,9 +32,9 @@ class UpdateNameController extends GetxController {
 
   Future<void> updateUserName() async {
     try {
-      // //start loading
-      // TFullScreenLoader.openLoadingDialog(
-      //     'Logging you in...', TImages.docerAnimation);
+      //start loading
+      TFullScreenLoader.openLoadingDialog(
+          'We are updating your information...', TImages.docerAnimation);
 
       //check internet connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -61,8 +62,10 @@ class UpdateNameController extends GetxController {
 
       //remove loader
       TFullScreenLoader.stopLoading();
-      TLoaders.errorSnackBar(
-          title: 'Congratulations!', message: 'Your Name has been updated');
+
+      //success message
+      TLoaders.successSnackBar(
+          title: 'Congratulations!', message: 'Your Name has been updated.');
 
       //move
       Get.off(() => const ProfileScreen());

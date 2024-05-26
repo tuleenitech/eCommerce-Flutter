@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:shopping/data/repositories/categories/category_repository.dart';
 import 'package:shopping/features/shop/models/product_model.dart';
 import 'package:shopping/utils/constants/enums.dart';
@@ -102,6 +100,13 @@ class ProductRepository extends GetxController {
               .limit(limit)
               .get();
 
+      print('Query completed with ${querySnapshot.docs.length} results');
+
+      if (querySnapshot.docs.isEmpty) {
+        print('No products found for brand: $brandId');
+        return [];
+      }
+
       final products = querySnapshot.docs
           .map((doc) => ProductModel.fromSnapshot(doc))
           .toList();
@@ -133,6 +138,11 @@ class ProductRepository extends GetxController {
       List<String> productIds = productCategoryQuery.docs
           .map((doc) => doc['productId'] as String)
           .toList();
+
+      if (productIds.isEmpty) {
+        print('No products found for category: $categoryId');
+        return [];
+      }
 
       final productsQuery = await _db
           .collection('Products')

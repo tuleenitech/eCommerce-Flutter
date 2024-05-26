@@ -35,7 +35,7 @@ class TProductCardAddToCartButton extends StatelessWidget {
         return Container(
           decoration: BoxDecoration(
             color: productQuantityInCart > 0 ? TColors.primary : TColors.dark,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(TSizes.cardRadiusMd),
               bottomRight: Radius.circular(TSizes.productImageRadius),
             ),
@@ -52,7 +52,7 @@ class TProductCardAddToCartButton extends StatelessWidget {
                           .bodyLarge!
                           .apply(color: TColors.white),
                     )
-                  : Icon(
+                  : const Icon(
                       Iconsax.add,
                       color: TColors.white,
                     ),

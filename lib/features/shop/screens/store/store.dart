@@ -10,7 +10,6 @@ import 'package:shopping/common/widgets/shimmers/brands_shimmer.dart';
 import 'package:shopping/common/widgets/texts/section_heading.dart';
 import 'package:shopping/features/shop/controllers/brand_controller.dart';
 import 'package:shopping/features/shop/controllers/category_controller.dart';
-import 'package:shopping/features/shop/models/product_model.dart';
 import 'package:shopping/features/shop/screens/brands/all_brands.dart';
 import 'package:shopping/features/shop/screens/brands/brand_products.dart';
 import 'package:shopping/features/shop/screens/store/widgets/category_tab.dart';
@@ -34,7 +33,7 @@ class StoreScreen extends StatelessWidget {
             'Store',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          actions: [
+          actions: const [
             TCartCounterIcon(),
           ],
         ),
@@ -76,8 +75,9 @@ class StoreScreen extends StatelessWidget {
 
 //brand grid
                       Obx(() {
-                        if (brandController.isLoading.value)
-                          return const TBrandsShimmer();
+                        // if (brandController.isLoading.value) {
+                        //   return const TBrandsShimmer();
+                        // }
 
                         if (brandController.featuredBrands.isEmpty) {
                           return Center(
@@ -98,8 +98,8 @@ class StoreScreen extends StatelessWidget {
                             return TBrandCard(
                               showBorder: true,
                               brand: brand,
-                              onTap: () => Get.to(() =>
-                                  Get.to(() => BrandProducts(brand: brand))),
+                              onTap: () =>
+                                  Get.to(() => BrandProducts(brand: brand)),
                             );
                           },
                         );

@@ -1,10 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:shopping/common/widgets/appbar/appbar.dart';
-import 'package:shopping/common/widgets/layout/grid_layout.dart';
-import 'package:shopping/common/widgets/products/products_cards/product_card_vertical.dart';
 import 'package:shopping/common/widgets/products/sortable/sortable_products.dart';
 import 'package:shopping/common/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:shopping/features/shop/controllers/product/all_products_controller.dart';
@@ -28,7 +25,7 @@ class AllProducts extends StatelessWidget {
       appBar: TAppBar(title: Text(title), showBackArrow: true),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(TSizes.defaultSpace),
+          padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: FutureBuilder(
               future: futureMethod ?? controller.fetchProductsByQuery(query),
               builder: (context, snapshot) {

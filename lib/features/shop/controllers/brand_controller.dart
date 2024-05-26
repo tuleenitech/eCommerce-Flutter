@@ -36,7 +36,7 @@ class BrandController extends GetxController {
     }
   }
 
-  Future<List<BrandModel>> getBrandCategory(String categoryId) async {
+  Future<List<BrandModel>> getBrandsForCategory(String categoryId) async {
     try {
       final brands = await brandRepository.getBrandsForCategory(categoryId);
       return brands;

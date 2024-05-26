@@ -59,7 +59,7 @@ class TLoginForm extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                //rembemer me
+                //remember me
                 Row(
                   children: [
                     Obx(
@@ -84,7 +84,7 @@ class TLoginForm extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () =>
-                        Get.to(() => controller.emailAndPasswordSignIn()),
+                        controller.emailAndPasswordSignIn(),
                     child: const Text(TTexts.signIn))),
             const SizedBox(height: TSizes.spaceBtwItems),
 

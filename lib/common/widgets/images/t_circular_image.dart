@@ -15,7 +15,7 @@ class TCircularImage extends StatelessWidget {
     required this.image,
     this.overlayColor,
     this.backgroundColor,
-    this.isNetworkImage = false,
+    this.isNetworkImage = true,
   });
 
   final BoxFit? fit;

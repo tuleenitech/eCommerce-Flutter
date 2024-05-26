@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shopping/features/shop/models/brand_model.dart';
-import 'package:shopping/features/shop/models/product%20attribute_model.dart';
+import 'package:shopping/features/shop/models/product_attribute_model.dart';
 import 'package:shopping/features/shop/models/product_variation_model.dart';
 
 class ProductModel {
@@ -90,7 +90,7 @@ class ProductModel {
       productAttributes: (data['ProductAttributes'] as List<dynamic>)
           .map((e) => ProductAttributeModel.fromJson(e))
           .toList(),
-      productVariations: (data['Product Variations'] as List<dynamic>)
+      productVariations: (data['ProductVariations'] as List<dynamic>)
           .map((e) => ProductVariationModel.fromJson(e))
           .toList(),
     );

@@ -4,7 +4,6 @@ import 'package:shopping/common/widgets/shimmers/boxes_shimmer.dart';
 import 'package:shopping/common/widgets/shimmers/list_file_shimmer.dart';
 import 'package:shopping/features/shop/controllers/brand_controller.dart';
 import 'package:shopping/features/shop/models/category_model.dart';
-import 'package:shopping/utils/constants/image_strings.dart';
 import 'package:shopping/utils/constants/sizes.dart';
 import 'package:shopping/utils/helpers/cloud_helper_function.dart';
 
@@ -18,7 +17,7 @@ class CategoryBrands extends StatelessWidget {
     final controller = BrandController.instance;
 
     return FutureBuilder(
-        future: controller.getBrandCategory(category.id),
+        future: controller.getBrandsForCategory(category.id),
         builder: (context, snapshot) {
           const loader = Column(
             children: [

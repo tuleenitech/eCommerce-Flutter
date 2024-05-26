@@ -4,7 +4,6 @@ import 'package:shopping/common/widgets/texts/product_title_text.dart';
 import 'package:shopping/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
 import 'package:shopping/features/shop/models/cart_item_model.dart';
 import 'package:shopping/utils/constants/colors.dart';
-import 'package:shopping/utils/constants/image_strings.dart';
 import 'package:shopping/utils/constants/sizes.dart';
 import 'package:shopping/utils/helpers/helper_functions.dart';
 
@@ -58,10 +57,10 @@ class TCartItem extends StatelessWidget {
                         (e) => TextSpan(
                           children: [
                             TextSpan(
-                                text: '${e.key}',
+                                text: e.key,
                                 style: Theme.of(context).textTheme.bodySmall),
                             TextSpan(
-                                text: '${e.value}',
+                                text: e.value,
                                 style: Theme.of(context).textTheme.bodyLarge),
                           ],
                         ),
