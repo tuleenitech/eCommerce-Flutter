@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping/common/widgets/appbar/appbar.dart';
+import 'package:shopping/common/widgets/texts/product_price_text.dart';
 import 'package:shopping/features/shop/controllers/product/all_products_controller.dart';
 import 'package:shopping/features/shop/screens/product_details/product_detail.dart';
 
@@ -49,7 +50,10 @@ class _SearchScreenState extends State<SearchScreen> {
                     final product = controller.products[index];
                     return ListTile(
                       title: Text(product.title),
-                      subtitle: Text('${product.price}\/\='),
+                      subtitle: TProductPriceText(
+                          price: controller.getProductPrice(product)),
+                    
+                      
                       onTap: () {
                         Get.to(() => ProductDetailScreen(product: product));
                       },

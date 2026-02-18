@@ -38,7 +38,7 @@ class OrderController extends GetxController {
     try {
       //start loader
       TFullScreenLoader.openLoadingDialog(
-          'Processing your Order', TImages.pencilAnimation);
+          'Processing your Order', TImages.loadingJuggleAnimation);
 
       //get user auth
       final userId = AuthenticationRepository.instance.authUser.uid;
@@ -65,7 +65,7 @@ class OrderController extends GetxController {
 
       //show Success Screen
       Get.off(() => SuccessScreen(
-            image: TImages.packageAnimation,
+            image: TImages.onBoardingImage3,
             title: 'Payment Success!',
             subTitle: 'Your Item will be shipped soon!',
             onPressed: () => Get.offAll(() => const NavigationMenu()),
